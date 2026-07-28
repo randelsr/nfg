@@ -60,8 +60,7 @@ function emptyUpdateResult(overrides: Partial<RunUpdateResult> = {}): RunUpdateR
 }
 
 /**
- * Component/integration tests for the Ink dashboard, per
- * phase_3_description.md's "Testing a TUI" requirement. `ink-testing-library`
+ * Component/integration tests for the Ink dashboard. `ink-testing-library`
  * renders against fake stdin/stdout streams (no real TTY needed) -- we drive
  * it with raw key sequences via `stdin.write(...)` and assert on
  * `lastFrame()`.

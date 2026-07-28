@@ -17,8 +17,8 @@ import { setupSandbox, type Sandbox } from './helpers/fixtures.js';
 /**
  * scheduler.ts tests. SAFETY: `execa` (and therefore every `launchctl`
  * call) is mocked file-wide -- this suite NEVER shells out to the real
- * `launchctl` binary and NEVER touches a real launchd session, per
- * phase_4_description.md's explicit safety requirement. `NFG_LAUNCH_AGENTS_DIR`
+ * `launchctl` binary and NEVER touches a real launchd session; this is an
+ * explicit safety requirement. `NFG_LAUNCH_AGENTS_DIR`
  * is pointed at a fresh `mktemp -d` in every test (never the real
  * `~/Library/LaunchAgents`), and `NFG_LAUNCH_AGENT_LABEL` is set to a
  * throwaway per-test label so nothing could ever collide with a real

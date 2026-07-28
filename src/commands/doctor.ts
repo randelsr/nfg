@@ -198,7 +198,7 @@ export async function runDoctor(): Promise<DoctorReport> {
     });
   }
 
-  // 8. launchd scheduled agent (overview.md section 6: "launchd loaded").
+  // 8. launchd scheduled agent.
   // `agentStatus()` short-circuits before ever calling `execa`/`launchctl`
   // when the plist file doesn't exist, so this stays a safe, side-effect-
   // free read on a machine that hasn't run `nfg schedule install` yet.
@@ -219,8 +219,7 @@ export async function runDoctor(): Promise<DoctorReport> {
     });
   }
 
-  // 9. Shadowing conflicts (overview.md section 6: "nfg doctor surfaces
-  // shadowing conflicts", section 3's skill/agent precedence rule).
+  // 9. Shadowing conflicts (the skill/agent precedence rule).
   // buildListing() already computes shadowedBy for every row when both
   // scopes are in play -- reuse it rather than re-deriving the precedence
   // table here (service.ts#precedenceWinner/shadowNote is the one place
@@ -236,7 +235,7 @@ export async function runDoctor(): Promise<DoctorReport> {
       name: 'shadowing',
       status: 'warn',
       message: `${shadowed.length} asset(s) installed at a scope that is currently shadowed: ${details}.`,
-      fix: 'Disable the shadowed copy, or rely on the winning scope intentionally -- see overview.md section 3 for the precedence rule.',
+      fix: 'Disable the shadowed copy, or rely on the winning scope intentionally (skills: global wins; agents: project wins).',
     });
   }
 

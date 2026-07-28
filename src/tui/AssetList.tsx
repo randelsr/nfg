@@ -101,7 +101,7 @@ function AssetRow({ row, selected, nameWidth, busy }: RowProps) {
 
 /** Scrollable asset table: renders a `.slice()` window of `rows` sized to
  * fit `height`, with a "Showing X-Y of Z" indicator when the list overflows
- * (per phase_3_description.md's incremental-rendering scroll pattern). */
+ * (the incremental-rendering scroll pattern). */
 export function AssetList({ rows, selectedIndex, height, emptyMessage, busyKey }: AssetListProps) {
   const visibleHeight = Math.max(1, height);
 

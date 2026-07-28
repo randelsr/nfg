@@ -1,9 +1,9 @@
 import { serializeFrontmatter } from '../core/frontmatter.js';
 
 /**
- * Scaffold for a new SKILL.md. Frontmatter matches overview.md section 3
- * (`name`, `description` -- the only two fields `validateFrontmatter`
- * requires for skills); `allowed-tools`/`model`/`disable-model-invocation`
+ * Scaffold for a new SKILL.md. Frontmatter includes only `name` and
+ * `description` -- the only two fields `validateFrontmatter`
+ * requires for skills; `allowed-tools`/`model`/`disable-model-invocation`
  * are left out entirely rather than stubbed with placeholder values, since
  * Claude Code treats their absence as "use the defaults" -- a scaffolded
  * skill that's never opened in $EDITOR (`--no-edit`) should behave exactly

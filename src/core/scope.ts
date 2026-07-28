@@ -15,8 +15,7 @@ export interface ScopeFlags {
 
 /**
  * Resolve --project/-p and --global/-g flags (plus cwd) into a concrete
- * Scope. Default scope is GLOBAL per the design decision in overview.md
- * section 2.
+ * Scope. Default scope is GLOBAL (the design default).
  */
 export function resolveScope(flags: ScopeFlags = {}, cwd: string = process.cwd()): Scope {
   if (flags.project && flags.global) {

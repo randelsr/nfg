@@ -23,7 +23,7 @@ function scopeProjectPath(scope: Scope): string | null {
 }
 
 // ---------------------------------------------------------------------------
-// Precedence / shadowing (overview.md section 3)
+// Precedence / shadowing
 // ---------------------------------------------------------------------------
 
 /**
@@ -87,7 +87,7 @@ export interface EnableOptions {
    * to process.cwd(). */
   cwd?: string;
   /** Required to overwrite a locally-modified install (never clobber
-   * silently, per overview.md section 8). */
+   * silently). */
   yes?: boolean;
 }
 

@@ -42,9 +42,9 @@ function defaultState(): LedgerState {
  * Ledger key format: `global:type/name` or `project:<absoluteProjectRoot>:type/name`.
  *
  * `projectPath` is the project's root directory (the parent of its .claude
- * dir), not the .claude dir itself -- this matches overview.md's own example
- * key (`project:/Users/…/repo:agent/code-reviewer`, a repo root, not a
- * `.../repo/.claude` path).
+ * dir), not the .claude dir itself -- for example,
+ * `project:/Users/…/repo:agent/code-reviewer` uses a repo root, not a
+ * `.../repo/.claude` path.
  */
 export function ledgerKey(type: AssetType, name: string, scope: ScopeKind, projectPath: string | null): string {
   if (scope === 'project') {

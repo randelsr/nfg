@@ -65,7 +65,7 @@ export interface PlistOptions {
    * Defaults to `process.execPath` -- overridable for deterministic tests. */
   nodePath?: string;
   /** Hour/minute (24h, local time) the daily/weekly run fires at. Defaults
-   * to 09:00 -- documented in phase_4_completed.md as the chosen cadence. */
+   * to 09:00 -- the chosen cadence. */
   hour?: number;
   minute?: number;
 }

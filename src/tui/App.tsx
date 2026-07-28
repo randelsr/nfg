@@ -37,7 +37,7 @@ import { runSuspended } from './suspend.js';
  *
  * State is a thin presentation layer over `src/core/service.ts`'s
  * `buildListing`/`enableAsset`/`disableAsset` -- no install/ledger logic
- * lives here (see phase_2_completed.md's "service-function boundary").
+ * lives here (the service-function boundary).
  */
 
 interface ConfirmState {

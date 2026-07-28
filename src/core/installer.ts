@@ -122,7 +122,7 @@ export function backupStamp(): string {
  * single-file types) before it's about to be overwritten -- used by both
  * `service.ts#enableAsset`'s `--yes` overwrite path and
  * `selfupdate.ts`'s `--force` asset re-sync, so "never clobber local edits
- * without a backup" (overview.md section 8) has exactly one implementation.
+ * without a backup" has exactly one implementation.
  * Returns the backup's path.
  */
 export function backupAsset(type: AssetType, name: string, targetPath: string, stamp: string): string {

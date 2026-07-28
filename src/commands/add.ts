@@ -17,9 +17,8 @@ import { renderTemplate } from '../templates/index.js';
  *
  * Scaffolds a new asset from `src/templates/`, opens it in `$EDITOR` (unless
  * `--no-edit`), validates the frontmatter that comes back, commits it to the
- * catalog, pushes, and offers to enable it locally -- see
- * phase_5_description.md task 2's numbered sequence, which this function
- * follows step for step.
+ * catalog, pushes, and offers to enable it locally -- this function follows
+ * that sequence step for step.
  *
  * Unlike `enable`/`disable`, both `<type>` and `<name>` are required --
  * there's no unambiguous-name inference here, since the type determines

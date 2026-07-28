@@ -14,7 +14,7 @@ export interface ValidationResult {
   errors: string[];
 }
 
-/** Required frontmatter fields per asset type (overview.md section 3). */
+/** Required frontmatter fields per asset type. */
 const REQUIRED_FIELDS: Record<AssetType, string[]> = {
   skill: ['name', 'description'],
   agent: ['name', 'description'],

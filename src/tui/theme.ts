@@ -17,7 +17,7 @@ export const colors = {
   danger: 'red',
 } as const;
 
-/** Status glyphs (phase_3_description.md task 1). */
+/** Status glyphs. */
 export const glyphs = {
   enabled: '●',
   disabled: '○',

@@ -17,8 +17,8 @@ import { setupSandbox, type Sandbox } from './helpers/fixtures.js';
  * "nfg clone"/"nfg on PATH" aren't asserted on precisely here -- they
  * depend on this machine's real $PATH and the sandbox repoRoot having no
  * .git (setupSandbox() never git-inits it), which is fine: this file's job
- * is to prove the *new* launchd + shadowing checks (overview.md section 6)
- * are present and correct, not to re-verify Phase 1's existing checks.
+ * is to prove the *new* launchd + shadowing checks are present and correct,
+ * not to re-verify Phase 1's existing checks.
  */
 
 vi.mock('../src/core/git.js', async () => {
@@ -128,7 +128,7 @@ describe('commands/doctor', () => {
       const check = findCheck(report, 'shadowing');
       expect(check.status).toBe('warn');
       expect(check.message).toContain('skill "next-phase" (project) is shadowed by the global copy');
-      expect(check.fix).toMatch(/overview\.md/);
+      expect(check.fix).toMatch(/global wins/);
 
       cwdSpy.mockRestore();
     });

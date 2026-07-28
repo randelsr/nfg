@@ -6,7 +6,7 @@ import { renderAgent, renderCommand, renderSkill, renderTemplate } from '../src/
  * Pure-function tests for src/templates/* -- no filesystem, no sandbox
  * needed. Confirms every type's scaffold interpolates the given name/
  * description and produces frontmatter that passes `validateFrontmatter`,
- * matching overview.md section 3's per-type field requirements.
+ * matching each asset type's required frontmatter fields.
  */
 
 describe('templates', () => {
