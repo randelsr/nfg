@@ -4,7 +4,6 @@ Concrete, still-open follow-ups (grounded in the current state, not speculative 
 decision + implementation when acted on.
 
 ## Operational (to make nfg actually usable across devices)
-- **First git commit** — the working tree is 100% untracked (zero commits). Ref: [overview.md](overview.md).
 - **Create the GitHub repo + set the remote** — `config.repo` is the placeholder `OWNER/nfg`; `update`,
   `schedule install`, and `add`'s push stay dormant until a real remote exists.
   Ref: [subsystems/self-update-scheduler.md](subsystems/self-update-scheduler.md).

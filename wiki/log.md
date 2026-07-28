@@ -2,6 +2,12 @@
 
 Newest first. One line per durable event: `## [YYYY-MM-DD] <op> | <title>`.
 
+## [2026-07-28] update | current-state refresh: repo now under version control
+Initial commit made (`9f0d056` on `main`, 77 files, tree clean). Refreshed the now-stale current-state:
+`overview.md`'s "not yet committed / zero commits" bullet became "under version control", and the
+completed "first git commit" item was removed from `ideas.md`. Other current-state facts unchanged
+(still no remote, not on PATH, fabricated fixtures present).
+
 ## [2026-07-28] graduate | .plans/overview.md → wiki (master design spec)
 Folded the durable content of the master design spec (`.plans/overview.md`) into the wiki, then removed
 the file — completing the program's `.plans/` cleanup (`.plans/` is now empty). Its decisions were

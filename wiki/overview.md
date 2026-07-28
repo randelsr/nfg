@@ -39,7 +39,7 @@ full per-command flag reference lives in [../README.md](../README.md).
   clean; `esbuild` bundle builds to `dist/cli.js`. Source: `src/{cli.ts,commands/,core/,tui/,templates/}`.
 - **Runs today** from the repo via `node bin/nfg.js` — dashboard, `enable`/`disable`/`list`, `add`,
   `doctor`, and the `update`/`schedule` logic all work.
-- **Not yet committed to git** — the working tree is 100% untracked (zero commits).
+- **Under version control** — initial commit `9f0d056` on `main` (77 files); working tree clean.
 - **No GitHub remote yet** — `config.repo` is the placeholder `OWNER/nfg`, so `update`,
   `schedule install`, and `add`'s `git push` stay dormant until a real remote exists.
 - **`nfg` is not on PATH** — invoked as `node bin/nfg.js`; `npm link` or `scripts/install.sh`
