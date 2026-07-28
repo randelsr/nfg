@@ -21,8 +21,9 @@ This split exists because of two decisions: the catalog is a single monorepo
   the catalog **and** as pre-existing hand-placed copies in the user's real `~/.claude/skills/` from
   before nfg existed — so `list` shows them as `ENABLED: no` (nfg's ledger doesn't own them) even
   though the files are physically present. Toggling them triggers the **untracked-file guard**.
-- `code-reviewer` (agent) and `changelog` (command) exist **only** in the catalog and are **fabricated
-  fixtures** created during Phase 1 to exercise the scanner — not real assets the user authored.
+- Historically, `code-reviewer` (agent) and `changelog` (command) existed **only** in the catalog as
+  **fabricated fixtures** (created during Phase 1 to exercise the scanner). They have since been removed,
+  so today every catalog asset was adopted from — and therefore also exists in — the user's `~/.claude`.
 
 ## Where it shows up
 

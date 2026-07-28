@@ -2,6 +2,14 @@
 
 Newest first. One line per durable event: `## [YYYY-MM-DD] <op> | <title>`.
 
+## [2026-07-28] update | catalog: removed the fabricated fixtures
+Removed the two placeholder fixtures (`code-reviewer` agent, `changelog` command) that seeded the
+catalog during Phase 1. The catalog now holds only real assets — 9 skills + 1 agent (`librarian`), no
+commands currently. Tests stay green (197/197; they build their own temp fixtures, independent of the
+real catalog). Refreshed the catalog tallies/examples in `overview.md`, `subsystems/catalog-and-add.md`,
+and `concepts/catalog-vs-installed.md`, cleared the done item from `ideas.md`, and cleaned the
+now-dangling fixture references in `src/templates/{agent,command}.ts` comments.
+
 ## [2026-07-28] update | catalog: adopted AoDM toolkit; orchestrate command → skill
 Converted `orchestrate` from a legacy command (`~/.claude/commands/orchestrate.md`) to a skill
 (`~/.claude/skills/orchestrate/SKILL.md`, `disable-model-invocation: true` to keep it user-invoked

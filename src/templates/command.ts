@@ -2,9 +2,8 @@ import { serializeFrontmatter } from '../core/frontmatter.js';
 
 /**
  * Scaffold for a new command `.md`. Frontmatter is just `description` --
- * the only field `validateFrontmatter` requires for commands (see
- * frontmatter.ts's REQUIRED_FIELDS and the seeded `changelog.md` fixture,
- * which has no `name` field either).
+ * the only field `validateFrontmatter` requires for commands (commands
+ * have no `name` field; see frontmatter.ts's REQUIRED_FIELDS).
  */
 export function renderCommand(name: string, description: string): string {
   const body = `

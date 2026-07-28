@@ -1,11 +1,9 @@
 import { serializeFrontmatter } from '../core/frontmatter.js';
 
 /**
- * Scaffold for a new agent `.md`. Frontmatter matches overview.md section 3
- * (`name`, `description`) plus `tools`/`model`, per phase_5_description.md's
- * explicit task list -- mirrors the shape of the seeded `code-reviewer.md`
- * fixture (comma-separated `tools`, `model: inherit`) so a scaffolded agent
- * looks like a normal hand-written one, not a special nfg-generated shape.
+ * Scaffold for a new agent `.md`: `name` + `description` frontmatter plus
+ * `tools` (comma-separated) and `model: inherit`. Shaped to look like a
+ * normal hand-written agent, not a special nfg-generated form.
  */
 export function renderAgent(name: string, description: string): string {
   const body = `

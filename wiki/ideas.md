@@ -9,10 +9,6 @@ decision + implementation when acted on.
   Ref: [subsystems/self-update-scheduler.md](subsystems/self-update-scheduler.md).
 - **Put `nfg` on PATH** — `npm link`, or `scripts/install.sh` once a remote exists.
 
-## Content
-- **Remove or replace the fabricated fixtures** `code-reviewer` (agent) + `changelog` (command) — they
-  are placeholder content, not real assets. Ref: [subsystems/catalog-and-add.md](subsystems/catalog-and-add.md).
-
 ## Deferred (explicitly v1 out-of-scope per the design)
 - **Import an existing local asset** into the catalog.
   Ref: [subsystems/install-engine.md](subsystems/install-engine.md), [subsystems/catalog-and-add.md](subsystems/catalog-and-add.md).

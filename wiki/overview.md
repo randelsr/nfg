@@ -44,10 +44,11 @@ full per-command flag reference lives in [../README.md](../README.md).
   `schedule install`, and `add`'s `git push` stay dormant until a real remote exists.
 - **`nfg` is not on PATH** — invoked as `node bin/nfg.js`; `npm link` or `scripts/install.sh`
   (once a remote exists) would fix that.
-- The catalog holds **9 skills, 2 agents, 1 command**. The real assets are the Agentic Development
-  Model toolkit, adopted from the user's `~/.claude`: skills `next-phase`, `save-plan`, `orchestrate`,
+- The catalog holds **9 skills and 1 agent — all real**: the Agentic Development Model toolkit,
+  adopted from the user's `~/.claude`. Skills `next-phase`, `save-plan`, `orchestrate`,
   `wiki-init`/`wiki-ingest`/`wiki-ask`/`wiki-lint`, `create-project-ruleset`/`create-shared-ruleset`,
-  and the `librarian` agent. Two **fabricated fixtures** remain — `code-reviewer` (agent) and
-  `changelog` (command) — see [concepts/catalog-vs-installed.md](concepts/catalog-vs-installed.md).
+  and the `librarian` agent. (No commands currently; the `command` type is still supported — the
+  fabricated fixtures that once seeded the catalog have been removed.) See
+  [concepts/catalog-vs-installed.md](concepts/catalog-vs-installed.md).
 
 Next moves live in [ideas.md](ideas.md) and the subsystems' Open threads.
