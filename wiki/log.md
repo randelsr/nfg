@@ -2,6 +2,15 @@
 
 Newest first. One line per durable event: `## [YYYY-MM-DD] <op> | <title>`.
 
+## [2026-07-28] decision-adjacent | created private GitHub remote randelsr/nfg
+Created the private GitHub repo `randelsr/nfg` (via `gh repo create`), wired it as `origin`, and pushed
+`main`. Updated `src/core/config.ts`'s default `repo` from the `OWNER/nfg` placeholder to `randelsr/nfg`
+(overridable per-user in `~/.config/nfg/config.json`) so a fresh clone on another device resolves the
+right repo — this is what makes cross-device `update`/`schedule`/`add`-push actually functional rather
+than dormant. Verified: `doctor`'s clone/remote check is green, `nfg update --check` runs a real remote
+comparison (up to date). Refreshed the now-stale "no remote / dormant" claims in `overview.md` +
+`subsystems/self-update-scheduler.md`, and cleared the done item from `ideas.md`.
+
 ## [2026-07-28] update | catalog: removed the fabricated fixtures
 Removed the two placeholder fixtures (`code-reviewer` agent, `changelog` command) that seeded the
 catalog during Phase 1. The catalog now holds only real assets — 9 skills + 1 agent (`librarian`), no

@@ -39,9 +39,10 @@ full per-command flag reference lives in [../README.md](../README.md).
   clean; `esbuild` bundle builds to `dist/cli.js`. Source: `src/{cli.ts,commands/,core/,tui/,templates/}`.
 - **Runs today** from the repo via `node bin/nfg.js` — dashboard, `enable`/`disable`/`list`, `add`,
   `doctor`, and the `update`/`schedule` logic all work.
-- **Under version control** — initial commit `9f0d056` on `main` (77 files); working tree clean.
-- **No GitHub remote yet** — `config.repo` is the placeholder `OWNER/nfg`, so `update`,
-  `schedule install`, and `add`'s `git push` stay dormant until a real remote exists.
+- **Under version control on GitHub** — a **private** remote `randelsr/nfg` (`origin`); local `main`
+  tracks `origin/main`. `config.repo` now defaults to `randelsr/nfg`, so `nfg update`, `schedule
+  install`, and `add`'s `git push` are live — `nfg update --check` does a real remote comparison
+  (currently up to date).
 - **`nfg` is not on PATH** — invoked as `node bin/nfg.js`; `npm link` or `scripts/install.sh`
   (once a remote exists) would fix that.
 - The catalog holds **9 skills and 1 agent — all real**: the Agentic Development Model toolkit,

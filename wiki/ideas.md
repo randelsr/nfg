@@ -4,10 +4,7 @@ Concrete, still-open follow-ups (grounded in the current state, not speculative 
 decision + implementation when acted on.
 
 ## Operational (to make nfg actually usable across devices)
-- **Create the GitHub repo + set the remote** — `config.repo` is the placeholder `OWNER/nfg`; `update`,
-  `schedule install`, and `add`'s push stay dormant until a real remote exists.
-  Ref: [subsystems/self-update-scheduler.md](subsystems/self-update-scheduler.md).
-- **Put `nfg` on PATH** — `npm link`, or `scripts/install.sh` once a remote exists.
+- **Put `nfg` on PATH** — `npm link`, or run `scripts/install.sh`.
 
 ## Deferred (explicitly v1 out-of-scope per the design)
 - **Import an existing local asset** into the catalog.

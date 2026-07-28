@@ -38,12 +38,14 @@ and run it on a schedule even when `nfg` isn't invoked.
 
 Working and tested (mocked `launchctl`/`git` + a real temp-repo integration test). `update --check`
 degrades gracefully with no remote; a sandboxed `schedule install → status → uninstall` cycle produces
-the correct plist and removes it, with the **real launchd session confirmed untouched**. Dormant in
-practice until a GitHub remote exists (there is none yet).
+the correct plist and removes it, with the **real launchd session confirmed untouched**. The private
+remote `randelsr/nfg` now exists, so `nfg update --check` runs a real comparison (currently up to date);
+the launchd schedule is not yet installed on this machine.
 
 ## Open threads
 
-- No real end-to-end run against a live remote yet (blocked on creating `OWNER/nfg`) ([ideas.md](../ideas.md)).
+- `update --check` runs a real remote comparison now that `randelsr/nfg` exists; a full `nfg update`
+  pull + asset re-sync against the live remote hasn't been needed yet (local `main` == `origin/main`).
 - launchd-only (macOS); no Linux/systemd equivalent ([ideas.md](../ideas.md)).
 
 ## Links

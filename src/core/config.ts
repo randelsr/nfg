@@ -4,8 +4,9 @@ import { configDir, configFilePath, repoRoot } from './paths.js';
 export type UpdateCadence = 'daily' | 'weekly' | 'manual';
 
 export interface NfgConfig {
-  /** "<owner>/<repo>" slug of the private GitHub monorepo. Placeholder
-   * until a real org is decided -- never hardcode a real org here. */
+  /** "<owner>/<repo>" slug of the private GitHub monorepo nfg pulls the CLI +
+   * catalog from. Defaults to this project's own repo (`randelsr/nfg`);
+   * override in ~/.config/nfg/config.json to point at a fork/clone. */
   repo: string;
   /** Local path the CLI repo is cloned to / running from. */
   clonePath: string;
@@ -28,7 +29,7 @@ export interface NfgConfig {
 
 export function defaultConfig(): NfgConfig {
   return {
-    repo: 'OWNER/nfg',
+    repo: 'randelsr/nfg',
     clonePath: repoRoot(),
     updateCadence: 'daily',
     editor: process.env.EDITOR || 'vi',
