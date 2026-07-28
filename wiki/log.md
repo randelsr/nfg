@@ -2,6 +2,15 @@
 
 Newest first. One line per durable event: `## [YYYY-MM-DD] <op> | <title>`.
 
+## [2026-07-28] update | catalog: adopted AoDM toolkit; orchestrate command → skill
+Converted `orchestrate` from a legacy command (`~/.claude/commands/orchestrate.md`) to a skill
+(`~/.claude/skills/orchestrate/SKILL.md`, `disable-model-invocation: true` to keep it user-invoked
+only), removing the command form. Adopted 7 real skills + 1 agent from `~/.claude` into the catalog:
+skills `orchestrate`, `create-project-ruleset`, `create-shared-ruleset`, `wiki-init`, `wiki-ingest`,
+`wiki-ask`, `wiki-lint`; agent `librarian`. Catalog now holds 9 skills / 2 agents / 1 command (verified
+via `nfg list` — scans cleanly). The two fabricated fixtures (`code-reviewer`, `changelog`) still
+remain. Refreshed catalog tallies in `overview.md` + `subsystems/catalog-and-add.md`.
+
 ## [2026-07-28] update | current-state refresh: repo now under version control
 Initial commit made (`9f0d056` on `main`, 77 files, tree clean). Refreshed the now-stale current-state:
 `overview.md`'s "not yet committed / zero commits" bullet became "under version control", and the

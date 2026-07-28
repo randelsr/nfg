@@ -31,8 +31,12 @@ Working. Full lifecycle verified in a sandbox repo: scaffold → commit (single 
 push-skip (no remote) → enable → list → disable. The dashboard `a` key runs the same flow via
 `runSuspended`. Templates render frontmatter that passes `validateFrontmatter` for all three types.
 
-The catalog currently holds 4 seed assets: real `next-phase` + `save-plan`, plus fabricated
-`code-reviewer`/`changelog` fixtures — see [concepts/catalog-vs-installed.md](../concepts/catalog-vs-installed.md).
+The catalog holds 9 skills, 2 agents, 1 command. The real assets are the Agentic Development Model
+toolkit adopted from `~/.claude`: skills `next-phase`, `save-plan`, `orchestrate`,
+`wiki-{init,ingest,ask,lint}`, `create-{project,shared}-ruleset`, and the `librarian` agent
+(`orchestrate` was converted from a legacy command to a skill on adoption). Two fabricated fixtures
+remain (`code-reviewer` agent, `changelog` command) — see
+[concepts/catalog-vs-installed.md](../concepts/catalog-vs-installed.md).
 
 ## Open threads
 
