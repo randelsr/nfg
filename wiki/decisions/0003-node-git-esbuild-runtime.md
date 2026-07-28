@@ -8,8 +8,9 @@ toolkit (Ink). The question was how the installed CLI actually runs and updates.
 
 ## Decision
 
-- **Node + TypeScript**, distributed as a git clone (`~/.nfg`) with a PATH shim, self-updating via
-  `git pull` / `gh` — no npm registry.
+- **Node + TypeScript**, distributed as a git clone (you choose the location — convention `~/repos/nfg`;
+  `scripts/install.sh` links `nfg` to *that* clone in place, never a second copy) with a PATH shim,
+  self-updating via `git pull` / `gh` — no npm registry.
 - **Dev** runs source via `tsx`; the **installed** CLI is bundled once by **esbuild** into
   `dist/cli.js` during install/update. `bin/nfg.js` imports the dist bundle (fast plain-node startup)
   and falls back to `node --import tsx src/cli.ts` when no bundle exists.

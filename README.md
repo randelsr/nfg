@@ -15,28 +15,31 @@ what makes per-asset enable/disable possible in the first place.
 
 ## Install
 
-`gh` must be installed and authenticated (`gh auth login`). First time, on each machine:
+`gh` must be installed and authenticated (`gh auth login`). Clone the repo wherever you keep
+your projects, then run the installer from inside it:
 
 ```bash
-gh repo clone randelsr/nfg ~/.nfg && bash ~/.nfg/scripts/install.sh
+gh repo clone randelsr/nfg ~/repos/nfg
+cd ~/repos/nfg && ./scripts/install.sh
 ```
 
-Thereafter the installer lives at `~/.nfg/scripts/install.sh` -- re-run it any time (it
-pulls, rebuilds, and relinks), or just use `nfg update`. The repo is **private**, so install
-goes through your authenticated `gh` session -- a plain `curl` of the raw script won't work.
-Override the source with `NFG_REPO=<owner>/<repo>` to install from a fork or different clone.
+The installer works **in place** -- it builds the CLI bundle and links `nfg` onto your PATH
+pointing at *this* clone (no second copy). `nfg` then self-updates this same clone via
+`git pull`, so one checkout per machine is both your working copy and the installed CLI. Re-run
+`./scripts/install.sh` after a manual `git pull`, or just use `nfg update`. The repo is
+**private**, so cloning + updating go through your authenticated `gh` session. Override the PATH
+target dir with `NFG_BIN_DIR`.
 
 What the installer does (`scripts/install.sh`, idempotent -- safe to re-run):
 
-1. Checks for `gh`, Node >=20, and npm; confirms `gh auth status` is signed in.
-2. Clones (first run) or pulls (subsequent runs) the repo to `~/.nfg`.
-3. `npm ci` + `npm run build` -- bundles `src/cli.ts` into `dist/cli.js` via
-   esbuild, so the installed CLI starts as plain, fast Node with no
-   per-invocation TypeScript/tsx overhead.
-4. Symlinks `~/.nfg/bin/nfg.js` to `~/.local/bin/nfg` (warns with the exact
-   `export PATH=...` line to add if `~/.local/bin` isn't already on `$PATH`).
-5. Runs `nfg doctor`; if it passes, also runs `nfg schedule install` to set
-   up the launchd job that keeps everything current automatically.
+1. Checks for Node >=20 and npm (and warns if `gh` is missing -- nfg needs it for `update`/`add`).
+2. `npm ci` + `npm run build` in the clone -- bundles `src/cli.ts` into `dist/cli.js` via
+   esbuild, so the installed CLI starts as plain, fast Node with no per-invocation tsx overhead.
+3. Symlinks `<clone>/bin/nfg.js` to `~/.local/bin/nfg` (warns with the exact `export PATH=...`
+   line to add if `~/.local/bin` isn't already on `$PATH`).
+4. Points `config.clonePath` at this clone, so `nfg update`/`schedule` act on the right repo.
+5. Runs `nfg doctor`; if it passes, also runs `nfg schedule install` to set up the launchd job
+   that keeps everything current automatically.
 
 ## Bare `nfg`: the dashboard
 
@@ -206,14 +209,14 @@ push/enable-offer, then resumes and refreshes automatically.
 
 Importing *existing* hand-written assets into the catalog, and pulling
 assets from external/third-party sources, are both intentionally out of
-scope for `nfg` -- see `.plans/phase_5_completed.md` for the reasoning.
+scope for `nfg` v1 -- see `wiki/ideas.md` (Deferred) for the reasoning.
 
 ## Uninstall
 
 ```bash
 nfg schedule uninstall            # unload + remove the launchd agent
 rm -f ~/.local/bin/nfg            # remove the PATH shim (adjust if you customized NFG_BIN_DIR)
-rm -rf ~/.nfg                     # remove the clone
+rm -rf ~/repos/nfg               # remove the clone (wherever you cloned it)
 ```
 
 This doesn't touch anything already installed under `~/.claude` or a
@@ -234,7 +237,7 @@ by hand afterward.
   `--yes`/`--force` to overwrite (a timestamped backup is made first under
   `~/.config/nfg/backups/`), or reconcile the catalog and local copy by hand.
 - **A push from `nfg add` failed**: your new asset is still safely committed
-  locally -- `cd ~/.nfg && git push` once you're back online / re-authed.
+  locally -- `cd` into your clone and `git push` once you're back online / re-authed.
 - **Shadowing**: if the same name is installed at both global and project
   scope, Claude Code only honors one of them (skills: global wins; agents:
   project wins). `nfg doctor` and `nfg list --json`'s `shadowedBy` field
