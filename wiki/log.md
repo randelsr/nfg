@@ -2,6 +2,18 @@
 
 Newest first. One line per durable event: `## [YYYY-MM-DD] <op> | <title>`.
 
+## [2026-07-28] update | resolved the `.plans/`-comment cleanup idea
+Removed ~19 dangling code-comment citations of the swept `.plans/` docs (`phase_N_{description,completed}.md`,
+old `.plans/overview.md` section references) across `src/` and `test/`, keeping each comment's substance.
+One was user-facing, not a comment: `doctor`'s shadowing-conflict `fix:` message
+(`src/commands/doctor.ts`) pointed at the deleted `overview.md section 3`; it now states the precedence
+rule inline ("skills: global wins; agents: project wins"), matching `src/core/service.ts#precedenceWinner`
+and already-documented in `concepts/scopes-and-enablement.md`'s Shadowing / precedence section (no
+contradiction, no update needed there). `test/doctor.test.ts` asserts the new text. Verified:
+`grep -rnE '\.plans/|phase_[0-9]_|overview\.md' src/ test/` → no hits; `npm test` → 197/197. Closes out
+the "De-reference swept `.plans/` docs in `src/` comments" item, removed from `ideas.md`'s now-empty
+Cleanup section. No architecture/design changed; `.plans/` (empty) and no wiki claims otherwise touched.
+
 ## [2026-07-28] update | primary machine set up: nfg on PATH + daily schedule
 Ran `scripts/install.sh` in place on the primary machine: linked `nfg` (`~/.local/bin/nfg` →
 `~/repos/nfg/bin/nfg.js`), built the bundle, and installed + loaded the daily launchd auto-update
