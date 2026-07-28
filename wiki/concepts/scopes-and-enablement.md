@@ -48,7 +48,7 @@ The `checksum` is the safety mechanism: `isLocallyModified` rehashes the install
 The ledger's sibling — nfg's own settings, created with defaults on first run (`src/core/config.ts`).
 Neither file is git-tracked; both live under `~/.config/nfg/` (overridable via `$XDG_CONFIG_HOME`).
 
-- `repo` — `<owner>/<repo>` slug of the monorepo (placeholder `OWNER/nfg` until a real remote exists)
+- `repo` — `<owner>/<repo>` slug of the monorepo; defaults to `randelsr/nfg` (overridable)
 - `clonePath` — where the CLI repo lives / runs from (defaults to the resolved repo root)
 - `updateCadence` — `daily` | `weekly` | `manual` (drives the launchd schedule + the on-invoke throttle)
 - `editor` — editor for `nfg add` (defaults to `$EDITOR`, else `vi`)

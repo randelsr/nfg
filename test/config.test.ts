@@ -24,7 +24,7 @@ describe('config', () => {
 
   it('has sane defaults', () => {
     const cfg = defaultConfig();
-    expect(cfg.repo).toBe('OWNER/nfg');
+    expect(cfg.repo).toBe('randelsr/nfg');
     expect(cfg.updateCadence).toBe('daily');
     expect(cfg.lastCheck).toBeNull();
     expect(cfg.catalogRef).toBeNull();
