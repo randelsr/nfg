@@ -4,13 +4,12 @@
 # Idempotent: safe to re-run. Clones on first run, pulls on subsequent
 # runs, always reinstalls deps + rebuilds + relinks + re-runs doctor.
 #
-# NOTE: this script is written for Phase 1 but not executed against a real
-# remote yet -- the GitHub org/repo (OWNER/nfg) is a placeholder until the
-# repo actually exists. Override via NFG_REPO for testing against a real
-# repo once one exists.
+# The default repo (randelsr/nfg) is PRIVATE, so the `gh repo clone` below
+# uses your authenticated gh session. Override NFG_REPO to install from a
+# fork or a different clone.
 set -euo pipefail
 
-REPO="${NFG_REPO:-OWNER/nfg}"
+REPO="${NFG_REPO:-randelsr/nfg}"
 CLONE_DIR="${NFG_CLONE_DIR:-$HOME/.nfg}"
 BIN_DIR="${NFG_BIN_DIR:-$HOME/.local/bin}"
 

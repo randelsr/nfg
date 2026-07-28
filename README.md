@@ -15,13 +15,16 @@ what makes per-asset enable/disable possible in the first place.
 
 ## Install
 
+`gh` must be installed and authenticated (`gh auth login`). First time, on each machine:
+
 ```bash
-curl -fsSL https://raw.githubusercontent.com/OWNER/nfg/main/scripts/install.sh | bash
+gh repo clone randelsr/nfg ~/.nfg && bash ~/.nfg/scripts/install.sh
 ```
 
-(`OWNER/nfg` is a placeholder -- set the real repo slug once the GitHub org
-is decided, both in the URL above and in `~/.config/nfg/config.json`'s
-`repo` field.)
+Thereafter the installer lives at `~/.nfg/scripts/install.sh` -- re-run it any time (it
+pulls, rebuilds, and relinks), or just use `nfg update`. The repo is **private**, so install
+goes through your authenticated `gh` session -- a plain `curl` of the raw script won't work.
+Override the source with `NFG_REPO=<owner>/<repo>` to install from a fork or different clone.
 
 What the installer does (`scripts/install.sh`, idempotent -- safe to re-run):
 
