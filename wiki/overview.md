@@ -37,14 +37,15 @@ full per-command flag reference lives in [../README.md](../README.md).
 
 - **All 5 implementation phases complete and verified.** 197 vitest tests pass; `tsc --noEmit`
   clean; `esbuild` bundle builds to `dist/cli.js`. Source: `src/{cli.ts,commands/,core/,tui/,templates/}`.
-- **Runs today** from the repo via `node bin/nfg.js` — dashboard, `enable`/`disable`/`list`, `add`,
-  `doctor`, and the `update`/`schedule` logic all work.
+- **Fully working** — dashboard, `enable`/`disable`/`list`, `add`, `update`, `schedule`, and `doctor`
+  all run via `nfg` on your PATH.
 - **Under version control on GitHub** — a **private** remote `randelsr/nfg` (`origin`); local `main`
   tracks `origin/main`. `config.repo` now defaults to `randelsr/nfg`, so `nfg update`, `schedule
   install`, and `add`'s `git push` are live — `nfg update --check` does a real remote comparison
   (currently up to date).
-- **`nfg` is not on PATH** — invoked as `node bin/nfg.js`; `npm link` or `scripts/install.sh`
-  (once a remote exists) would fix that.
+- **Installed on the primary machine** — `scripts/install.sh` linked `nfg` on PATH
+  (`~/.local/bin/nfg` → `~/repos/nfg`) and loaded the daily launchd auto-update agent
+  (`com.nfg.update`). Other machines: clone + `./scripts/install.sh` (install-in-place).
 - The catalog holds **9 skills and 1 agent — all real**: the Agentic Development Model toolkit,
   adopted from the user's `~/.claude`. Skills `next-phase`, `save-plan`, `orchestrate`,
   `wiki-init`/`wiki-ingest`/`wiki-ask`/`wiki-lint`, `create-project-ruleset`/`create-shared-ruleset`,

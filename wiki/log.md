@@ -2,6 +2,14 @@
 
 Newest first. One line per durable event: `## [YYYY-MM-DD] <op> | <title>`.
 
+## [2026-07-28] update | primary machine set up: nfg on PATH + daily schedule
+Ran `scripts/install.sh` in place on the primary machine: linked `nfg` (`~/.local/bin/nfg` →
+`~/repos/nfg/bin/nfg.js`), built the bundle, and installed + loaded the daily launchd auto-update
+agent (`com.nfg.update`, gui/501, logging to `~/.config/nfg/update.log`). `nfg doctor` is fully green.
+Refreshed the now-stale "not on PATH" / "schedule not installed" claims in `overview.md` and
+`subsystems/self-update-scheduler.md`; swapped the completed "put nfg on PATH" item in `ideas.md` for
+the remaining `.plans/`-comment cleanup.
+
 ## [2026-07-28] decision-adjacent | created private GitHub remote randelsr/nfg
 Created the private GitHub repo `randelsr/nfg` (via `gh repo create`), wired it as `origin`, and pushed
 `main`. Updated `src/core/config.ts`'s default `repo` from the `OWNER/nfg` placeholder to `randelsr/nfg`

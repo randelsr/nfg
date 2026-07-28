@@ -40,7 +40,7 @@ Working and tested (mocked `launchctl`/`git` + a real temp-repo integration test
 degrades gracefully with no remote; a sandboxed `schedule install → status → uninstall` cycle produces
 the correct plist and removes it, with the **real launchd session confirmed untouched**. The private
 remote `randelsr/nfg` now exists, so `nfg update --check` runs a real comparison (currently up to date);
-the launchd schedule is not yet installed on this machine.
+the daily launchd schedule (`com.nfg.update`) is installed and loaded on the primary machine.
 
 ## Open threads
 
