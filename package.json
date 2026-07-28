@@ -1,0 +1,37 @@
+{
+  "name": "nfg",
+  "version": "0.1.0",
+  "description": "Cross-device Claude Code asset manager CLI",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "nfg": "bin/nfg.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "build": "node scripts/build.mjs",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.7.0",
+    "cac": "^7.0.0",
+    "execa": "^9.6.1",
+    "fullscreen-ink": "^0.1.0",
+    "gray-matter": "^4.0.3",
+    "ink": "^7.1.0",
+    "react": "^19.2.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "@types/react": "^19.2.17",
+    "esbuild": "^0.28.1",
+    "ink-testing-library": "^4.0.0",
+    "tsx": "^4.23.0",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.10"
+  }
+}

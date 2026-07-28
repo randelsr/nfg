@@ -1,0 +1,34 @@
+# Wiki log
+
+Newest first. One line per durable event: `## [YYYY-MM-DD] <op> | <title>`.
+
+## [2026-07-28] graduate | .plans/overview.md → wiki (master design spec)
+Folded the durable content of the master design spec (`.plans/overview.md`) into the wiki, then removed
+the file — completing the program's `.plans/` cleanup (`.plans/` is now empty). Its decisions were
+already captured (decisions/0001–0003). Newly added to `concepts/scopes-and-enablement.md`, verified
+against `src/core/{frontmatter,config}.ts`: the per-type asset frontmatter formats (incl. the "command
+is a legacy Claude Code form — folded into skills but still supported" fact) and the `config.json`
+schema (`repo`/`clonePath`/`updateCadence`/`editor`/`lastCheck`/`catalogRef`/`updateAvailable`). Added a
+`wiki/overview.md → ../README.md` pointer for the full per-command flag reference. Deliberately not
+carried over (process residue, re-derivable from code/subsystems): the phase map, the context7
+verification notes, the full dependency list, and the repo tree.
+
+## [2026-07-28] update | program-complete verification pass (phases 1-5)
+Librarian pass at the phase 1-5 program boundary (no phase 6 queued). Re-verified every claim across
+`overview.md`, all 3 decisions, all 4 subsystems, both concepts, and `ideas.md` directly against live
+code and the `.plans/` roster: 197/197 vitest tests pass, `tsc --noEmit` clean, `dist/cli.js` esbuild
+bundle present, zero git commits, no remote, `config.repo` still the `OWNER/nfg` placeholder, `nfg` not
+on PATH, catalog holds exactly the 4 documented assets. No contradictions found; nothing needed
+correcting. Filled in a few missing bidirectional cross-links: `concepts/catalog-vs-installed.md` now
+links back to decisions 0001/0002; `ideas.md`'s Deferred section and the `install-engine` /
+`catalog-and-add` / `self-update-scheduler` subsystems' Open threads now cross-reference each other for
+the import-existing-asset, external-catalog-sources, and non-macOS-scheduler items. `.plans/` left
+untouched — its sweep is the orchestrator's job, not this pass's.
+
+## [2026-07-28] init | wiki scaffold
+Stood up `wiki/` at the completion of the 5-phase nfg implementation program. Created `WIKI.md`
+(schema), `overview.md` (with Current state), `index.md`, this log, three decisions
+(loose-file-over-plugins, single-monorepo-catalog, node-git-esbuild-runtime), four subsystems
+(install-engine, dashboard, self-update-scheduler, catalog-and-add), two concepts
+(catalog-vs-installed, scopes-and-enablement), and empty `experiments/` + `ideas.md`. All claims
+verified against `src/` and `.plans/overview.md`. Precursor to the librarian's program-complete capture.
