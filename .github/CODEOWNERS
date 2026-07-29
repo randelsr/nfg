@@ -1,0 +1,25 @@
+# CODEOWNERS for randelsr/nfg
+# https://docs.github.com/en/repositories/managing-your-repositories-settings-and-features/customizing-your-repository/about-code-owners
+#
+# Listed owners are automatically requested for review on any PR that touches a
+# matching path. If branch protection on `main` enables "Require review from
+# Code Owners", their approval becomes required to merge. Later-matching rules
+# win, so the `*` default is overridden by the more specific paths below.
+
+# Default owner for everything in the repo.
+*                   @randelsr
+
+# CLI source, tests, and build/install scripts
+/src/               @randelsr
+/test/              @randelsr
+/scripts/           @randelsr
+/bin/               @randelsr
+
+# The asset catalog (skills / agents / commands the tool distributes)
+/catalog/           @randelsr
+
+# Durable intent-layer memory (the wiki)
+/wiki/              @randelsr
+
+# Repo meta / CI
+/.github/           @randelsr
