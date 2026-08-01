@@ -151,8 +151,11 @@ Scaffolds a new asset from `src/templates/`, then:
    `TODO: describe this <type>.` placeholder instead).
 3. Renders the template into the right `catalog/` path (a skill gets its own
    directory + `SKILL.md`; an agent/command gets a single `.md` file) and
-   opens it in `$EDITOR` (from `config.editor`, which itself defaults to
-   `$EDITOR`, then `vi`) unless `--no-edit`.
+   opens it in your editor unless `--no-edit`. The editor is resolved
+   per-invocation: `--editor <command>` > the live `$EDITOR` > `config.editor`
+   > `vi`. (`config.editor` is a fallback for machines without `$EDITOR`, not
+   an override -- earlier versions snapshotted the install-time `$EDITOR` into
+   `config.json`, which then permanently shadowed the live one.)
 4. Re-validates the frontmatter after you close the editor. Invalid
    frontmatter (a missing/blank required field) either re-prompts to reopen
    the editor (interactive) or aborts cleanly (scripted) -- either way,

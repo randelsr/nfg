@@ -32,11 +32,24 @@ export function defaultConfig(): NfgConfig {
     repo: 'randelsr/nfg',
     clonePath: repoRoot(),
     updateCadence: 'daily',
-    editor: process.env.EDITOR || 'vi',
+    // A static fallback, deliberately NOT process.env.EDITOR: defaultConfig()
+    // feeds saveConfig() on first run, and snapshotting the install-time
+    // $EDITOR into the persisted file permanently shadowed the live one on
+    // every later invocation. Live-env resolution lives in resolveEditor().
+    editor: 'vi',
     lastCheck: null,
     catalogRef: null,
     updateAvailable: false,
   };
+}
+
+/** The editor command for this invocation. Precedence: an explicit per-call
+ * override (`--editor`) > the live `$EDITOR` > the persisted `config.editor`
+ * > `vi`. Env beats config because config.json's `editor` is machine-written
+ * on first run rather than a deliberate user choice -- letting it win froze
+ * whatever $EDITOR was (or wasn't) at install time forever. */
+export function resolveEditor(config: NfgConfig, override?: string): string {
+  return override?.trim() || process.env.EDITOR?.trim() || config.editor?.trim() || 'vi';
 }
 
 /** Load ~/.config/nfg/config.json, creating it with defaults on first run.

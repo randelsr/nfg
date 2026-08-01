@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { defaultConfig, loadConfig, saveConfig } from '../src/core/config.js';
+import { defaultConfig, loadConfig, resolveEditor, saveConfig } from '../src/core/config.js';
 import { configFilePath } from '../src/core/paths.js';
 
 describe('config', () => {
@@ -51,5 +51,50 @@ describe('config', () => {
     const cfg = loadConfig();
     expect(cfg.repo).toBe('someorg/nfg');
     expect(cfg.updateCadence).toBe('daily');
+  });
+
+  describe('resolveEditor', () => {
+    let originalEditor: string | undefined;
+
+    beforeEach(() => {
+      originalEditor = process.env.EDITOR;
+    });
+
+    afterEach(() => {
+      if (originalEditor === undefined) delete process.env.EDITOR;
+      else process.env.EDITOR = originalEditor;
+    });
+
+    it('prefers an explicit override over $EDITOR and config.editor', () => {
+      process.env.EDITOR = 'nano';
+      const cfg = { ...defaultConfig(), editor: 'emacs' };
+      expect(resolveEditor(cfg, 'code --wait')).toBe('code --wait');
+    });
+
+    it('prefers the live $EDITOR over the persisted config.editor', () => {
+      process.env.EDITOR = 'nano';
+      const cfg = { ...defaultConfig(), editor: 'emacs' };
+      expect(resolveEditor(cfg)).toBe('nano');
+    });
+
+    it('falls back to config.editor when $EDITOR is unset or blank', () => {
+      delete process.env.EDITOR;
+      const cfg = { ...defaultConfig(), editor: 'emacs' };
+      expect(resolveEditor(cfg)).toBe('emacs');
+
+      process.env.EDITOR = '   ';
+      expect(resolveEditor(cfg)).toBe('emacs');
+    });
+
+    it('falls back to vi when nothing else is set', () => {
+      delete process.env.EDITOR;
+      const cfg = { ...defaultConfig(), editor: '' };
+      expect(resolveEditor(cfg)).toBe('vi');
+    });
+
+    it('defaultConfig no longer snapshots $EDITOR into the persisted value', () => {
+      process.env.EDITOR = 'nano';
+      expect(defaultConfig().editor).toBe('vi');
+    });
   });
 });

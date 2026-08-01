@@ -3,7 +3,7 @@ import path from 'node:path';
 import { execa } from 'execa';
 import * as clack from '@clack/prompts';
 import { listCatalog } from '../core/catalog.js';
-import { loadConfig } from '../core/config.js';
+import { loadConfig, resolveEditor } from '../core/config.js';
 import { parseFrontmatter, validateFrontmatter, type AssetType } from '../core/frontmatter.js';
 import * as git from '../core/git.js';
 import { isDirType } from '../core/installer.js';
@@ -29,6 +29,9 @@ export interface AddCommandOptions extends ScopeFlags {
   /** Populated by cac's automatic `--no-edit` negation: defaults to `true`,
    * `false` when `--no-edit` is passed. */
   edit?: boolean;
+  /** Per-invocation editor command (`--editor "code --wait"`); overrides
+   * both $EDITOR and config.editor via resolveEditor. */
+  editor?: string;
   description?: string;
   json?: boolean;
   yes?: boolean;
@@ -106,7 +109,7 @@ async function openEditor(filePath: string, editorCmd: string): Promise<void> {
   if (result.exitCode === undefined) {
     throw new Error(
       `Could not launch editor "${editorCmd}": ${result.shortMessage ?? 'unknown error'}. ` +
-        'Re-run with --no-edit, or fix $EDITOR/config.editor.',
+        'Re-run with --no-edit, pass --editor <command>, or fix $EDITOR/config.editor.',
     );
   }
 }
@@ -180,10 +183,10 @@ export async function runAdd(typeArg: string | undefined, nameArg: string | unde
 
   let edited = false;
   if (options.edit !== false) {
-    const config = loadConfig();
+    const editorCmd = resolveEditor(loadConfig(), options.editor);
     for (;;) {
       try {
-        await openEditor(targetFile, config.editor);
+        await openEditor(targetFile, editorCmd);
       } catch (err) {
         cleanupScaffold(type, targetFile);
         throw err;

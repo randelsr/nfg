@@ -3,6 +3,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { afterEach, beforeEach, describe, expect, it, vi, type MockInstance } from 'vitest';
 import { runAdd } from '../src/commands/add.js';
+import { defaultConfig, saveConfig } from '../src/core/config.js';
 import * as git from '../src/core/git.js';
 import { parseFrontmatter, validateFrontmatter } from '../src/core/frontmatter.js';
 import { get as ledgerGet } from '../src/core/ledger.js';
@@ -129,6 +130,32 @@ describe('commands/add', () => {
     const output = JSON.parse(logSpy.mock.calls.at(-1)![0] as string);
     expect(output.edited).toBe(true);
     expect(output.committed).toBe(true);
+  });
+
+  it('the live $EDITOR overrides a persisted config.editor', async () => {
+    // config.editor would clobber the file with invalid content; if the add
+    // succeeds, the live $EDITOR (a no-op) is what actually ran.
+    const badContent = path.join(sandbox.home, 'bad-config-editor.md');
+    fs.writeFileSync(badContent, 'no frontmatter here at all\n');
+    saveConfig({ ...defaultConfig(), editor: `cp ${badContent}` });
+    process.env.EDITOR = 'true';
+
+    await runAdd('skill', 'env-editor-skill', { json: true, description: 'Proves env beats config.' });
+
+    const { data } = parseFrontmatter(fs.readFileSync(catalogFile(path.join('skills', 'env-editor-skill', 'SKILL.md')), 'utf8'));
+    expect(validateFrontmatter('skill', data).valid).toBe(true);
+  });
+
+  it('--editor overrides both $EDITOR and config.editor', async () => {
+    const badContent = path.join(sandbox.home, 'bad-env-editor.md');
+    fs.writeFileSync(badContent, 'no frontmatter here at all\n');
+    saveConfig({ ...defaultConfig(), editor: `cp ${badContent}` });
+    process.env.EDITOR = `cp ${badContent}`;
+
+    await runAdd('skill', 'flag-editor-skill', { editor: 'true', json: true, description: 'Proves the flag beats env.' });
+
+    const { data } = parseFrontmatter(fs.readFileSync(catalogFile(path.join('skills', 'flag-editor-skill', 'SKILL.md')), 'utf8'));
+    expect(validateFrontmatter('skill', data).valid).toBe(true);
   });
 
   it('human-readable output reports the push failure clearly without losing the commit', async () => {

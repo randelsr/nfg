@@ -65,7 +65,8 @@ async function main(): Promise<void> {
 
   cli
     .command('add [type] [name]', 'Scaffold a new asset and push it to the catalog')
-    .option('--no-edit', 'Skip opening $EDITOR after scaffolding')
+    .option('--no-edit', 'Skip opening the editor after scaffolding')
+    .option('--editor <command>', 'Editor command for this invocation (overrides $EDITOR and config.editor)')
     .option('--description <text>', 'One-line description (skips the interactive prompt)')
     .action(async (type: string | undefined, name: string | undefined, options: AddCommandOptions) => {
       await runAdd(type, name, options);
